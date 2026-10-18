@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Personita Especial ❤️</title>
+    
+    <!-- Fuentes Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Archivo CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+    <!-- PANTALLA 1: VALIDACIÓN DE FECHA -->
+    <div id="pantalla1" class="pantalla activa">
+        <div class="tarjeta">
+            <div class="icono-contenedor">
+                <i data-lucide="lock" class="icono-candado"></i>
+            </div>
+            
+            <h1>Un Rincón Especial</h1>
+            <p class="subtitulo">Ingresa la fecha de nuestro aniversario para desbloquear este mensaje:</p>
+            
+            <form id="formularioFecha" onsubmit="validarFecha(event)">
+                <div class="campo-grupo">
+                    <input type="text" id="fechaInput" placeholder="DD/MM/AAAA" maxlength="10" autocomplete="off" required>
+                </div>
+                
+                <p id="mensajeError" class="error-hidden">La fecha no es correcta, intenta de nuevo mi amor... 💕</p>
+                
+                <button type="submit" class="btn-desbloquear">
+                    <span>Desbloquear</span>
+                    <i data-lucide="heart" class="icono-btn"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PANTALLA 2: ANIMACIÓN Y MENSAJE DE ANIVERSARIO -->
+    <div id="pantalla2" class="pantalla">
+        <!-- Lienzo para la animación de partículas del corazón -->
+        <canvas id="heartCanvas"></canvas>
+
+        <div class="tarjeta-resultado">
+            <div class="mensaje-amor">
+                <h2 class="titulo-amor">¡Nuestra Fecha Especial! ✨</h2>
+                <div class="contador-dias">
+                    <span class="dias-numero" id="diasContador">--</span>
+                    <span class="dias-texto">días para nuestro aniversario</span>
+                </div>
+                
+                <!-- Botón para abrir la carta -->
+                <button class="btn-carta" onclick="abrirCarta()">
+                    <i data-lucide="mail"></i>
+                    <span>Abrelo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+ <!-- MODAL DE LA CARTA ROMÁNTICA -->
+    <div id="modalCarta" class="modal-carta">
+        <div class="contenido-carta">
+            <button class="btn-cerrar-carta" onclick="cerrarCarta()">
+                <i data-lucide="x"></i>
+            </button>
+
+            <div class="encabezado-carta">
+                <i data-lucide="heart-handshake" class="icono-carta"></i>
+                <h2>Para Ti, Mi Niña</h2>
+            </div>
+
+            <div class="cuerpo-carta">
+                <p>Sé que últimamente las cosas entre nosotras no han sido como antes, que hemos tenido discusiones y momentos en los que quizá nos hemos sentido más lejos que nunca. No voy a fingir que todo está bien, porque sé que hay cosas que nos duelen, pero quiero que sepas que, incluso en medio de todo esto, hay algo que sigue intacto en mí: el amor que siento por ti.</p>
+                
+                <p>A veces me pongo a pensar en nuestro futuro, en todo lo que todavía nos falta vivir, en los abrazos que nos debemos, en los sueños que quisiera cumplir contigo y en todos esos momentos que todavía imagino a tu lado. Y, aunque ahora no estemos pasando por nuestra mejor etapa, no puedo evitar seguir viéndote en mis planes, porque mi corazón todavía te elige cuando piensa en el mañana.</p>
+                
+                <p>No sé qué nos espera ni cuánto nos costará superar los momentos difíciles, pero sí sé que te amo y que lo nuestro sigue siendo importante para mí. No quiero que olvides que, detrás de los días malos, sigo siendo esa persona que sueña con compartir mucho más de la vida contigo.</p>
+                
+                <p>Te amo, mi princesa, y si pudiera pedirle algo a nuestro futuro, sería que todavía nos queden muchísimas historias por vivir juntas, muchos aniversarios que celebrar y muchas razones para volver a mirarnos como al principio. Porque, a pesar de todo, cuando imagino lo que viene, todavía hay una parte de mí que sonríe al imaginarte conmigo.</p>
+
+                <!-- Frase final con animación lenta -->
+                <div class="frase-destacada">
+                    Aún no conozco todo lo que nos espera, pero todavía sueño con descubrirlo contigo, mi amor
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+
+    <!-- Archivo JavaScript -->
+    <script src="static/js/script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

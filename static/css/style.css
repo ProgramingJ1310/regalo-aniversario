@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4a001f 0%, #1a000c 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Manejo de pantallas */
+.pantalla {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.pantalla.activa {
+    display: flex;
+}
+
+/* Tarjeta del Formulario */
+.tarjeta {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 40px 28px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.icono-contenedor {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 77, 109, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+}
+
+.icono-candado {
+    color: #ff4d6d;
+    width: 28px;
+    height: 28px;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.3rem;
+    color: #ff758f;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 2px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #ff4d6d;
+    box-shadow: 0 0 12px rgba(255, 77, 109, 0.4);
+}
+
+.error-hidden {
+    display: none;
+    color: #ffb3c1;
+    font-size: 0.85rem;
+    margin-top: 12px;
+}
+
+.error-visible {
+    display: block;
+    animation: shake 0.4s ease-in-out;
+}
+
+.btn-desbloquear {
+    margin-top: 22px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #ff4d6d, #c9184a);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-desbloquear:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+}
+
+/* Estilos Pantalla 2 (Corazón y Mensaje) */
+#pantalla2 {
+    position: relative;
+    flex-direction: column;
+}
+
+#heartCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.tarjeta-resultado {
+    position: relative;
+    z-index: 2;
+    background: rgba(20, 0, 10, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 117, 143, 0.3);
+    border-radius: 20px;
+    padding: 25px 20px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 40px;
+    animation: slideUp 1s ease-out;
+}
+
+.titulo-amor {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #ff758f;
+    margin-bottom: 12px;
+}
+
+.contador-dias {
+    margin: 15px 0;
+}
+
+.dias-numero {
+    display: block;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ff4d6d;
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+}
+
+.dias-texto {
+    font-size: 0.95rem;
+    color: #ffb3c1;
+}
+
+.nota-romantica {
+    font-size: 0.85rem;
+    color: #e0e0e0;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+/* Botón Leer Carta */
+.btn-carta {
+    margin-top: 18px;
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ff758f;
+    border-radius: 12px;
+    background: rgba(255, 117, 143, 0.15);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-carta:hover {
+    background: #ff4d6d;
+    border-color: #ff4d6d;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Modal de la Carta */
+.modal-carta {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 0, 5, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-carta.activo {
+    display: flex;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.contenido-carta {
+    position: relative;
+    background: linear-gradient(145deg, #2b0013, #150009);
+    border: 1px solid rgba(255, 117, 143, 0.4);
+    border-radius: 20px;
+    padding: 30px 25px;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+.btn-cerrar-carta {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #ffb3c1;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.encabezado-carta {
+    margin-bottom: 20px;
+}
+
+.icono-carta {
+    color: #ff4d6d;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+}
+
+.encabezado-carta h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #ff758f;
+}
+
+.cuerpo-carta {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #f0f0f0;
+    text-align: justify;
+    max-height: 320px; /* Aumentado para mayor comodidad de lectura */
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Estilo suave para la barra de desplazamiento en teléfonos */
+.cuerpo-carta::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cuerpo-carta::-webkit-scrollbar-thumb {
+    background: #ff4d6d;
+    border-radius: 4px;
+}
+/* Frase final destacada */
+.frase-destacada {
+    margin-top: 25px;
+    padding: 15px 10px;
+    border-top: 1px solid rgba(255, 117, 143, 0.25);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.25rem;
+    color: #ff758f;
+    text-align: center;
+    line-height: 1.5;
+    opacity: 0;
+    animation: aparecerLento 3s ease-in forwards;
+    animation-delay: 1s; /* Espera un segundo antes de empezar a aparecer */
+}
+
+@keyframes aparecerLento {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
