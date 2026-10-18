@@ -74,12 +74,13 @@ function iniciarAnimacionCorazonLatiendo() {
     const numParticles = 420; // Más partículas para mayor densidad
     let pulseAngle = 0.02; // Ángulo para controlar el ritmo del latido
 
-    // Ecuación matemática del corazón
-    function getHeartPoint(t) {
-        const x = 16 * Math.pow(Math.sin(t), 3);
-        const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-        return { x, y };
-    }
+// Ecuación matemática del corazón con proporciones redondeadas (sin estirar)
+function getHeartPoint(t) {
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    // Ajustamos las constantes del eje Y para reducir la altura y ensanchar la curva superior
+    const y = -(12 * Math.cos(t) - 4.5 * Math.cos(2*t) - 2 * Math.cos(3*t) - 0.5 * Math.cos(4*t));
+    return { x, y };
+}
 
     class Particle {
         constructor() {
@@ -94,18 +95,22 @@ function iniciarAnimacionCorazonLatiendo() {
             this.alpha = Math.random() * 0.7 + 0.3;
         }
 
-        update(beatScale) {
-            // Aplica el factor de latido (beatScale)
-            const baseScale = Math.min(canvas.width, canvas.height) / 36;
-            const currentScale = baseScale * beatScale;
+     update(beatScale) {
+    // Calculamos el tamaño base
+    const minDim = Math.min(canvas.width, canvas.height);
+    
+    // Escala independiente: aplicamos un pequeño factor en Y para aplanar la altura y ensanchar
+    const scaleX = (minDim / 38) * beatScale;
+    const scaleY = (minDim / 44) * beatScale; // Divisor más grande en Y = menos estirado hacia arriba
 
-            this.targetX = canvas.width / 2 + this.basePoint.x * currentScale;
-            this.targetY = canvas.height / 2.3 + this.basePoint.y * currentScale;
+    this.targetX = canvas.width / 2 + this.basePoint.x * scaleX;
+    // Posición Y perfectamente equilibrada arriba de la tarjeta
+    this.targetY = canvas.height / 2.7 + this.basePoint.y * scaleY;
 
-            // Movimiento suave hacia el objetivo
-            this.x += (this.targetX - this.x) * this.speed;
-            this.y += (this.targetY - this.y) * this.speed;
-        }
+    // Movimiento fluido hacia la posición
+    this.x += (this.targetX - this.x) * this.speed;
+    this.y += (this.targetY - this.y) * this.speed;
+}
 
         draw() {
             ctx.beginPath();
